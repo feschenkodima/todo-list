@@ -1,0 +1,6 @@
+@mixin titleFontProperties {
+  font-family: $main-font;
+  font-size: $title-font-size;
+  font-style: $title-font-style;
+  color: $title-color;
+}

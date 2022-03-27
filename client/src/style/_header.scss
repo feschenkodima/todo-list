@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 120px;
+  align-content: center;
+  background-color: $background-color;
+  &__logo {
+    background-color: $background-color;
+    &--item {
+      @include titleFontProperties;
+      text-transform: none;
+    }
+  }
+}
