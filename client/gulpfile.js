@@ -21,9 +21,9 @@ gulp.task("html", () => {
 
 gulp.task("css", () => {
   return gulp
-    .src("./src/**/style.scss", { allowEmpty: true })
+    .src("./src/**/*.scss", { allowEmpty: true })
     .pipe(sass().on("error", sass.logError))
-    .pipe(autoprefixer({ cascade: true, browsers: ["last 8 versions"] }))
+    .pipe(autoprefixer({ cascade: false }))
     .pipe(cleanCss({ compatibility: "ie8" }))
     .pipe(concat("style.min.css"))
     .pipe(gulp.dest("dist"))
