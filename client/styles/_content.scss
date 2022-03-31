@@ -1,0 +1,84 @@
+@import "variables";
+@import "mixins";
+
+.content-box {
+  &__title {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    align-items: center;
+    & button {
+      width: 30%;
+      font-family: $main-font;
+    }
+    & h1 {
+      @include titleFontProperties;
+    }
+  }
+  &__modal {
+    display: none;
+    z-index: 1;
+    position: fixed;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+  }
+  &__form {
+    margin: 0 auto;
+    height: 400px;
+    width: 40%;
+    padding: 40px;
+    border: 1px solid $text-color;
+    border-radius: 20px;
+    position: relative;
+    background-color: #fff;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+  }
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.cards-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+body {
+  background-color: beige;
+}
+.card {
+  background-color: $background-color;
+}

@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap");
+.content-box__title {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  align-items: center;
+}
+.content-box__title button {
+  width: 30%;
+  font-family: "Montserrat", sans-serif;
+}
+.content-box__title h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 35px;
+  font-style: bold;
+  color: #3b3a3d;
+}
+.content-box__modal {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+.content-box__form {
+  margin: 0 auto;
+  height: 400px;
+  width: 40%;
+  padding: 40px;
+  border: 1px solid #6e6c78;
+  border-radius: 20px;
+  position: relative;
+  background-color: #fff;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+.cards-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+body {
+  background-color: beige;
+}
+
+.card {
+  background-color: #7aa899;
+}
+
+/*# sourceMappingURL=content.css.map */
