@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap");
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 120px;
+  align-items: center;
+  background-color: #7aa899;
+  border-bottom: 1px solid #27263d;
+  box-shadow: 3px 3px 3px #27263d;
+}
+.header__logo a {
+  font-size: 35px;
+}
+.header__logo {
+  margin-left: 15px;
+}
+.header__logo a:hover {
+  background-color: #fff;
+  color: #27263d;
+}
+.header__menu {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+}
+.header__menu a:hover {
+  background-color: #27263d;
+  color: #fff;
+}
+
+.navbar {
+  width: 50%;
+}
+
+/*# sourceMappingURL=header.css.map */

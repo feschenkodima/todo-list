@@ -1,0 +1,197 @@
+@import "variables";
+@import "mixins";
+
+.content-box {
+  &__title {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    align-items: center;
+    width: 100%;
+    & button {
+      width: 30%;
+      font-family: $main-font;
+    }
+    & h1 {
+      @include titleFontProperties;
+    }
+  }
+  &__modal {
+    display: none;
+    z-index: 1;
+    position: fixed;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+  }
+  &__form {
+    margin: 0 auto;
+    height: 400px;
+    width: 40%;
+    padding: 40px;
+    border: 1px solid $text-color;
+    border-radius: 20px;
+    position: relative;
+    background-color: #fff;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+  }
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+.cards-container{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+}
+.cards-container__planed, .cards-container__ready {
+  width: 35%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.card {
+  margin: 0 10px 20px 0;
+  width: 15%;
+  text-align: center;
+}
+body {
+  background-color: beige;
+  height: 100%;
+  font-family: $main-font;
+}
+.card {
+  background-color: $background-color;
+}
+
+.start-page {
+  display: flex;
+  margin: 0 auto;
+  width: 40%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 300px;
+  margin-top: 100px;
+}
+.login-form__container {
+  margin: 0 auto;
+  display: none;
+  width: 50%;
+  height: 50%;
+  margin-top: 10%;
+  padding: 20px;
+  background-color: $background-color;
+  border: 1px solid $text-color;
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px $text-color;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  &--item {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    font-family: $main-font;
+    & input,
+    span {
+      box-shadow: 3px 3px 3px $text-color;
+    }
+    & h1 {
+      @include titleFontProperties;
+    }
+    &__buttons {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 60%;
+      & :first-child {
+        box-shadow: 3px 3px 3px rgb(10, 53, 4);
+      }
+      & :last-child {
+        box-shadow: 3px 3px 3px rgb(53, 4, 4);
+      }
+    }
+  }
+}
+.header__menu__item a {
+  width: 100px;
+}
+
+.no-items-content {
+  margin: 0 auto;
+  text-align: center;
+  @include titleFontProperties;
+}
+.show-hide-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 110px;
+  display: none;
+  text-align: center;
+  color: $text-color;
+}
+
+.active {
+  display: block;
+}
+
+.show-hide-button:hover {
+  color: $buttons-color;
+}
+.form-check-input:checked{
+  background-color: $buttons-color;
+}
+.form-check-input:hover{
+  cursor: pointer;
+}
+
+.form-switch{
+
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 0 15px 0 ;
+}

@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap");
+.content-box__title {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  align-items: center;
+  width: 100%;
+}
+.content-box__title button {
+  width: 30%;
+  font-family: "Montserrat", sans-serif;
+}
+.content-box__title h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 35px;
+  font-style: bold;
+  color: #3b3a3d;
+}
+.content-box__modal {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+.content-box__form {
+  margin: 0 auto;
+  height: 400px;
+  width: 40%;
+  padding: 40px;
+  border: 1px solid #6e6c78;
+  border-radius: 20px;
+  position: relative;
+  background-color: #fff;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+.cards-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cards-container__planed, .cards-container__ready {
+  width: 35%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card {
+  margin: 0 10px 20px 0;
+  width: 15%;
+  text-align: center;
+}
+
+body {
+  background-color: beige;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+}
+
+.card {
+  background-color: #7aa899;
+}
+
+.start-page {
+  display: flex;
+  margin: 0 auto;
+  width: 40%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 300px;
+  margin-top: 100px;
+}
+
+.login-form__container {
+  margin: 0 auto;
+  display: none;
+  width: 50%;
+  height: 50%;
+  margin-top: 10%;
+  padding: 20px;
+  background-color: #7aa899;
+  border: 1px solid #6e6c78;
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px #6e6c78;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+.login-form__container--item {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+}
+.login-form__container--item input,
+.login-form__container--item span {
+  box-shadow: 3px 3px 3px #6e6c78;
+}
+.login-form__container--item h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 35px;
+  font-style: bold;
+  color: #3b3a3d;
+}
+.login-form__container--item__buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 60%;
+}
+.login-form__container--item__buttons :first-child {
+  box-shadow: 3px 3px 3px #0a3504;
+}
+.login-form__container--item__buttons :last-child {
+  box-shadow: 3px 3px 3px #350404;
+}
+
+.header__menu__item a {
+  width: 100px;
+}
+
+.no-items-content {
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 35px;
+  font-style: bold;
+  color: #3b3a3d;
+}
+
+.show-hide-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 110px;
+  display: none;
+  text-align: center;
+  color: #6e6c78;
+}
+
+.active {
+  display: block;
+}
+
+.show-hide-button:hover {
+  color: #27263d;
+}
+
+.form-check-input:checked {
+  background-color: #27263d;
+}
+
+.form-check-input:hover {
+  cursor: pointer;
+}
+
+.form-switch {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 0 15px 0;
+}
+
+/*# sourceMappingURL=content.css.map */
