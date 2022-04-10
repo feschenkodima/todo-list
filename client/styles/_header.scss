@@ -12,6 +12,10 @@
   }
   &__logo {
     margin-left: 15px;
+    & a:hover {
+      background-color: #fff;
+      color: $buttons-color;
+    }
   }
   &__menu {
     list-style-type: none;

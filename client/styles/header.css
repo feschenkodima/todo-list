@@ -14,6 +14,10 @@
 .header__logo {
   margin-left: 15px;
 }
+.header__logo a:hover {
+  background-color: #fff;
+  color: #27263d;
+}
 .header__menu {
   list-style-type: none;
   display: flex;
@@ -29,4 +33,4 @@
   width: 50%;
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=header.css.map */
