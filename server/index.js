@@ -63,6 +63,9 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get("/", function (req, res) {
+  res.sendFile("index.html");
+});
 //sign in and sign up requests============
 
 app.post("/api/login", jsonParser, async (req, res) => {
