@@ -2,13 +2,10 @@ const http = require("http");
 const express = require("express");
 const app = require("./app");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const jsonParser = express.json();
-const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const server = http.createServer(app);
 const { MongoClient, ObjectId } = require("mongodb");
-const { json } = require("express/lib/response");
 const tokenKey = "1a2b-3c4d-5e6f-7g8h";
 
 const { API_PORT } = process.env;
