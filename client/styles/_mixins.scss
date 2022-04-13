@@ -4,3 +4,72 @@
   font-style: $title-font-style;
   color: $title-color;
 }
+
+/*========== Breakpoings ==========*/
+@mixin breakpoint($point) {
+  @if $point==xl {
+
+      // 1120px
+      @media (min-width: 70em) {
+          @content;
+      }
+  }
+
+  @else if $point==lg {
+
+      // 1024px
+      @media (min-width: 64em) {
+          @content;
+      }
+  }
+
+  @else if $point==lg-only {
+
+      // 1023px
+      @media (max-width: 1023px) {
+          @content;
+      }
+  }
+
+  @else if $point==md {
+
+      // 768px
+      @media (min-width: 48em) {
+          @content;
+      }
+  }
+
+  @else if $point==md-only {
+
+      // 767px
+      @media (max-width: 767px) {
+          @content;
+      }
+  }
+
+  @else if $point==sm {
+
+      // 600px
+      @media (min-width: 37.5em) {
+          @content;
+      }
+  }
+
+  @else if $point==sm-only {
+      @media (max-width: 599px) {
+          @content;
+      }
+  }
+
+  @else if $point==xs {
+      @media (min-width: 450px) {
+          @content;
+      }
+  }
+
+  @else if $point==xs-only {
+      @media (max-width: 449px) {
+          @content;
+      }
+  }
+}

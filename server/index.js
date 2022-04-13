@@ -82,7 +82,7 @@ app.post("/api/login", jsonParser, async (req, res) => {
       token: jwt.sign({ id: user._id }, tokenKey),
     });
   } else {
-    return res.status(400).json({ message: "Користувача не знайдено" });
+    return res.status(400).json({ message: "User not found" });
   }
 });
 
@@ -94,20 +94,16 @@ app.post("/api/signup", jsonParser, async (req, res) => {
   const usersEmail = await users.findOne({ email: req.body.email });
   const usersName = await users.findOne({ name: req.body.name });
   if (usersEmail) {
-    return res
-      .status(404)
-      .json({ message: "Така електронна пошта вже зареєстрована" });
+    return res.status(404).json({ message: "This email exists" });
   }
   if (usersName) {
-    return res.status(404).json({ message: "Таке ім'я вже існує" });
+    return res.status(404).json({ message: "This name exists" });
   }
   if (!req.body) {
-    return res
-      .status(400)
-      .json({ message: "Немає данних. Заповніть всі поля" });
+    return res.status(400).json({ message: "No data. Fill all field" });
   }
   if (!req.body.password || !req.body.name || !req.body.email) {
-    return res.status(400).json({ message: "Заповніть всі поля" });
+    return res.status(400).json({ message: "Fill all field" });
   }
 
   if (!usersEmail && !usersName) {
@@ -117,7 +113,7 @@ app.post("/api/signup", jsonParser, async (req, res) => {
       password: req.body.password,
       isAdmin: req.body.password == "admin" ? true : false,
     });
-    return res.status(200).json({ message: "Реєстрація успішна, дякую, " });
+    return res.status(200).json({ message: "Sign up is success, thanks, " });
   }
 });
 
@@ -136,19 +132,19 @@ app.get(`/api/cards/:name`, jsonParser, async (req, res, next) => {
 
 app.post(`/api/addCard`, jsonParser, async (req, res, next) => {
   if (!req.body.title) {
-    return res.status(400).json({ message: "Заповніть поле назви дії" });
+    return res.status(400).json({ message: "Fill name of task" });
   }
   if (!req.body.description) {
-    return res.status(400).json({ message: "Заповніть поле опису дії" });
+    return res.status(400).json({ message: "Fill description of task" });
   }
   if (!req.body.name) {
-    return res.status(400).json({ message: "Немає імені користувача" });
+    return res.status(400).json({ message: "No user" });
   }
   const newCard = await tasks.insertOne({
     name: req.body.name,
     title: req.body.title,
     description: req.body.description,
-    cheked: false,
+    checked: false,
   });
   if (newCard) {
     const addedCard = await tasks.findOne({
@@ -157,11 +153,11 @@ app.post(`/api/addCard`, jsonParser, async (req, res, next) => {
       description: req.body.description,
     });
     if (addedCard == null) {
-      return res.status(400).json({ message: "Не вдалося створити картку" });
+      return res.status(400).json({ message: "Failed to create task" });
     }
     return res.status(200).json(addedCard);
   } else {
-    return res.status(400).json({ message: "Не вдалося створити картку" });
+    return res.status(400).json({ message: "Failed to create task" });
   }
 });
 
@@ -175,9 +171,9 @@ app.put(`/api/editCard/:id`, jsonParser, async (req, res) => {
 
   if (taskForUpdate) {
     await tasks.updateOne(filter, { $set: update }, { upsert: true });
-    return res.status(200).json({ message: "Виконано :)" });
+    return res.status(200).json({ message: "Done :)" });
   } else {
-    return res.status(400).json({ message: "Немає такого завдання" });
+    return res.status(400).json({ message: "There is no such task" });
   }
 });
 
@@ -190,9 +186,9 @@ app.delete(`/api/card/delete/:id`, jsonParser, async (req, res, next) => {
 
   if (taskForDelete) {
     await tasks.deleteOne(taskForDelete);
-    return res.status(200).json({ message: "Видалено успішно" });
+    return res.status(200).json({ message: "Removal successful" });
   } else {
-    return res.status(400).json({ message: "Немає такого завдання" });
+    return res.status(400).json({ message: "There is no such task" });
   }
 });
 
