@@ -61,12 +61,11 @@ const addCardEventListener = async (event) => {
       taskDescriptionValue
     );
     let newTask = await newCardResponse.json();
-    console.log(newTask);
     if (noItems) noItems.style.display = "none";
 
     if (newCardResponse.ok) {
-      let card = `<div class="card" data-cardId=${newTask._id} id="card">
-     <div class="card-body">
+      const card = `<div class="card" data-cardId=${newTask._id} id="card">
+      <div class="card-body">
        <h5 class="card-title">${newTask.title}</h5>
        <p class="card-text">${newTask.description}</p>
         <div class="form-check form-switch">
@@ -74,15 +73,15 @@ const addCardEventListener = async (event) => {
             newTask._id
           } ${newTask.checked ? "checked" : ""}>
           <label class="form-check-label" for="flexSwitchCheckDefault">${
-            newTask.checked ? "Виконано" : "Заплановано"
+            newTask.checked ? "Done" : "Planned"
           }</label>
         </div>
         <button type="button" class="btn btn-danger delete-card" data-id="${
           newTask._id
-        }" id="delete-card" >
-          Видалити
+        }" id="delete-card">
+          Delete
         </button>
-     </div>
+      </div>
    </div>`;
       modalForm.reset();
       taskDescriptionValue = "";
@@ -106,10 +105,8 @@ const addCardEventListener = async (event) => {
   }
 };
 const createCardsFunction = (array, container) => {
-  const mapedCardsArray = array.map((item) => {
-    return `<div class="card" style="width: 18rem;" data-cardId=${
-      item._id
-    } id="card">
+  array.map((item) => {
+    let card = `<div class="card" data-cardId="${item._id}" id="card">
     <div class="card-body">
       <h5 class="card-title">${item.title}</h5>
       <p class="card-text">${item.description}</p>
@@ -118,33 +115,41 @@ const createCardsFunction = (array, container) => {
           item._id
         } ${item.checked ? "checked" : ""}>
         <label class="form-check-label" for="checkbox">${
-          item.checked ? "Виконано" : "Заплановано"
+          item.checked ? "Done" : "Planned"
         }</label>
       </div>
         <button type="button" class="btn btn-danger delete-card" data-id="${
           item._id
         }" id="delete-card">
-          Видалити
+          Delete
         </button>
     </div>
   </div>`;
+    return container.insertAdjacentHTML("afterbegin", card);
   });
-  container.insertAdjacentHTML("beforeend", mapedCardsArray);
 };
 
 const createCardsFromArray = async (name) => {
   const resp = await getCards(name);
-  const noItemsImage = `<p class="no-items-content">Немає завдань, додайте, щоб побачити...<p>`;
+  const noItemsImage = `<p class="no-items-content">No tasks, add to see...<p>`;
+  const noReadyTasks = `<p class="no-items-content">no done tasks, add to see...<p>`;
   if (resp.ok) {
     let result = await resp.json();
+
     const reversedResult = result.reverse();
     if (result.length > 0) {
       const plannedTasksArr = reversedResult.filter(
         (item) => item.checked == false
       );
+
+      if (plannedTasksArr.length == 0)
+        cardsContainerPlanned.insertAdjacentHTML("beforeend", noItemsImage);
+
       const readyTasksArr = reversedResult.filter(
         (item) => item.checked == true
       );
+      if (readyTasksArr.length == 0)
+        cardsContainerReady.insertAdjacentHTML("beforeend", noReadyTasks);
       createCardsFunction(plannedTasksArr, cardsContainerPlanned);
       createCardsFunction(readyTasksArr, cardsContainerReady);
     } else {
@@ -217,9 +222,9 @@ const addCardToReadyFunction = async (isChecked) => {
         showToast(userObj.name, result.message);
         card.remove();
         if (isChecked) {
-          cardsContainerReady.insertAdjacentElement("afterbegin", card);
+          cardsContainerReady.insertAdjacentElement("beforeend", card);
         } else {
-          cardsContainerPlanned.insertAdjacentElement("afterbegin", card);
+          cardsContainerPlanned.insertAdjacentElement("beforeend", card);
         }
       } else {
         showToast(userObj.name, result.message);
@@ -294,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
     profileBtn.innerText = `${userObj.name}`;
     profileBtn.addEventListener("mouseenter", (event) => {
       event.preventDefault();
-      profileBtn.innerText = "Вихід";
+      profileBtn.innerText = "Leave";
     });
     profileBtn.addEventListener("mouseleave", (event) => {
       event.preventDefault();
@@ -303,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     createCardsFromArray(userObj.name);
 
-    const message = "Вітаю";
+    const message = "Hi";
     showToast(userObj.name.toUpperCase(), message);
 
     profileBtn.addEventListener("dblclick", exitFromProfile, false);
@@ -356,21 +361,21 @@ const createLoginForm = (event) => {
   loginFormContainer.style.display = "block";
   const loginForm = `
       <form class="login-form__container--item">
-        <h1>Вхід</h1>
+        <h1>Sign in</h1>
         <div class="input-group mb-3">
-          <span class="input-group-text" >Ел.пошта</span>
+          <span class="input-group-text" >Email</span>
           <input id="user-login-email" type="email" class="form-control" aria-label="Sizing example input" aria-describedby="user-email">
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" >Пароль</span>
+          <span class="input-group-text" >Password</span>
           <input type="password" class="form-control" aria-label="Sizing example input" id="user-login-password" aria-describedby="user-password">
         </div>
         <div class="login-form__container--item__buttons">
           <button type="button" class="btn btn-success" id="login">
-            Ввійти
+            Enter
           </button>
           <button type="button" class="btn btn-danger" id="close-login-form">
-            Скасувати
+            Cancel
           </button>
         </div>
       </form>`;
@@ -397,10 +402,10 @@ const authorization = async (event) => {
   const usersPasswordInput = document.getElementById("user-login-password");
   const usersEmailValue = usersEmailInput.value;
   const usersPasswordValue = usersPasswordInput.value;
-  const message = "Заповніть всі поля";
-  const wrongEmail = "Запишить ел.пошту правильно";
-  const name = "будь-ласка";
-  const wrongResponse = "Неправильна пошта чи пароль";
+  const message = "Fill all input";
+  const wrongEmail = "Incorrect email";
+  const name = "please";
+  const wrongResponse = "Incorrect email or password";
   event.preventDefault();
   if (usersEmailValue.length == 0 || usersPasswordValue.length == 0) {
     if (!usersEmailValue.match(mailformat)) {
@@ -417,6 +422,7 @@ const authorization = async (event) => {
     }
   } else {
     const response = await signInFunction(usersEmailValue, usersPasswordValue);
+    const userObj = JSON.parse(localStorage.getItem("token"));
     if (response.ok) {
       const result = await response.json();
       const token = result.token;
@@ -434,11 +440,11 @@ const authorization = async (event) => {
       logo.style.margin = "0 0 0 15px";
       profileBtn.innerText = `${result.name}`;
       createCardsFromArray(result.name);
-      const message = "Вітаю";
+      const message = "Hi";
       showToast(result.name.toUpperCase(), message);
       profileBtn.addEventListener("mouseenter", (event) => {
         event.preventDefault();
-        profileBtn.innerText = "Вихід";
+        profileBtn.innerText = "Leave";
       });
       profileBtn.addEventListener("mouseleave", (event) => {
         event.preventDefault();
@@ -458,33 +464,41 @@ const createSignUpForm = (event) => {
   loginFormContainer.style.display = "block";
   const signUpForm = `
       <form class="login-form__container--item">
-        <h1>Реєстрація</h1>
+        <h1>Sign up</h1>
         <div class="input-group mb-3">
-          <span class="input-group-text" >Ел.пошта</span>
+          <span class="input-group-text" >Email</span>
           <input id="user-email" type="email" class="form-control" aria-label="Sizing example input" aria-describedby="user-email">
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" >Ім'я</span>
+          <span class="input-group-text" >Name</span>
           <input id="user-name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="user-name">
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" >Пароль</span>
+          <span class="input-group-text" >Password</span>
           <input type="password" class="form-control" aria-label="Sizing example input" id="user-password" aria-describedby="user-password">
-          <button  id="show-password" class="show-hide-button active btn btn-info">Показати</button>
-          <button id="hide-password"  class="show-hide-button btn btn-info">Приховати</button>
+          <button  id="show-password" class="show-hide-button active btn btn-light">
+            <i class="bi bi-eye" id="show-eye"></i>
+          </button>
+          <button id="hide-password"  class="show-hide-button btn btn-light">
+            <i class="bi bi-eye-slash" id="show-slash-eye"></i>
+          </button>
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" >Підтвердити пароль</span>
+          <span class="input-group-text" >Confirm</span>
           <input type="password" class="form-control" aria-label="Sizing example input" id="user-retry-password" aria-describedby="user-retry-password">
-          <button id="show-retry-password" class="show-hide-button btn btn-info">Показати</button>
-          <button id="hide-retry-password" class="show-hide-button active btn btn-info">Приховати</button>
+          <button id="show-retry-password" class="show-hide-button btn btn-light active">
+            <i class="bi bi-eye" id="show-retry-eye"></i>
+          </button>
+          <button id="hide-retry-password" class="show-hide-button  btn btn-light">
+            <i class="bi bi-eye-slash" id="show-retry-slash-eye"></i>
+          </button>
         </div>
         <div class="login-form__container--item__buttons">
           <button type="button" class="btn btn-success" id="create-new-user">
-            Ввійти
+            Create
           </button> 
           <button type="button" class="btn btn-danger" id="close-login-form">
-            Скасувати
+            Cancel
           </button>
         </div>
       </form>`;
@@ -502,27 +516,34 @@ const createSignUpForm = (event) => {
     const hidePswrdBtn = document.getElementById("hide-password");
     const showRetryPswrdBtn = document.getElementById("show-retry-password");
     const hideRetryPswrdBtn = document.getElementById("hide-retry-password");
-
+    console.log(event.target.closest("i"));
     const usersPasswordInput = document.getElementById("user-password");
     const usersRetryPasswordInput = document.getElementById(
       "user-retry-password"
     );
-    if (event.target == showPswrdBtn) {
+    const showEye = document.getElementById("show-eye");
+    const showSlashEye = document.getElementById("show-slash-eye");
+    const showRetryEye = document.getElementById("show-retry-eye");
+    const showRetrySlashEye = document.getElementById("show-retry-slash-eye");
+    if (event.target == showPswrdBtn || event.target == showEye) {
       usersPasswordInput.type = "text";
       hidePswrdBtn.classList.add("active");
       showPswrdBtn.classList.remove("active");
     }
-    if (event.target == hidePswrdBtn) {
+    if (event.target == hidePswrdBtn || event.target == showSlashEye) {
       usersPasswordInput.type = "password";
       hidePswrdBtn.classList.remove("active");
       showPswrdBtn.classList.add("active");
     }
-    if (event.target == showRetryPswrdBtn) {
+    if (event.target == showRetryPswrdBtn || event.target == showRetryEye) {
       usersRetryPasswordInput.type = "text";
       showRetryPswrdBtn.classList.remove("active");
       hideRetryPswrdBtn.classList.add("active");
     }
-    if (event.target == hideRetryPswrdBtn) {
+    if (
+      event.target == hideRetryPswrdBtn ||
+      event.target == showRetrySlashEye
+    ) {
       usersRetryPasswordInput.type = "password";
       showRetryPswrdBtn.classList.add("active");
       hideRetryPswrdBtn.classList.remove("active");
@@ -542,9 +563,9 @@ const registration = async (event) => {
   const usersEmailValue = usersEmailInput.value;
   const usersPasswordValue = usersPasswordInput.value;
   const usersRetryPasswordValue = usersRetryPasswordInput.value;
-  const message = "Будь-ласка",
-    name = "заповніть всі поля",
-    retryPassword = "Введіть однакові паролі";
+  const message = "Please",
+    name = "fill all inputs",
+    retryPassword = "passwords do not match";
 
   if (usersEmailValue.length == 0 || usersPasswordValue.length == 0) {
     showToast(name, message);

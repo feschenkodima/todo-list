@@ -14,14 +14,18 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+    />
     <link rel="stylesheet" href="./client/styles/header.css" />
     <link rel="stylesheet" href="./client/styles/content.css" />
-    <title>Дій</title>
+    <title>Do</title>
   </head>
   <body>
     <header class="header">
       <div class="header__logo">
-        <a href="#" type="button" class="btn btn-dark">Дій</a>
+        <a href="#" type="button" class="btn btn-dark">Do</a>
       </div>
       <nav class="navbar">
         <ul class="header__menu">
@@ -31,7 +35,7 @@
               rel="noopener noreferrer"
               type="button"
               class="btn btn-light"
-              >Профіль</a
+              >Profile</a
             >
           </li>
         </ul>
@@ -39,38 +43,36 @@
     </header>
     <div class="start-page">
       <button type="button" class="btn btn-secondary btn-lg" id="login-button">
-        Ввійти
+        Sign In
       </button>
       <button type="button" class="btn btn-secondary btn-lg" id="signup-button">
-        Зареєструватись
+        Sign Up
       </button>
     </div>
     <section class="content-box">
       <div class="content-box__title">
-        <h1>Список дій</h1>
+        <h1>To do list</h1>
         <button
           type="button"
           class="btn btn-secondary btn-lg"
           id="button-modal"
         >
-          Створити дію
+          Create task
         </button>
       </div>
       <div class="content-box__modal" id="modal-window">
         <form class="content-box__form" id="modal-form">
           <div class="mb-3">
-            <label for="task-title" class="form-label">Назва дії</label>
+            <label for="task-title" class="form-label">Name of task</label>
             <input
               type="text"
               class="form-control"
               id="task-title"
-              placeholder="покормити кота..."
+              placeholder="feed the cat..."
             />
           </div>
           <div class="mb-3">
-            <label for="task-description" class="form-label"
-              >Опис запланованої дії</label
-            >
+            <label for="task-description" class="form-label">Description</label>
             <textarea
               class="form-control"
               id="task-description"
@@ -79,21 +81,21 @@
           </div>
           <div class="content-box__form-buttons">
             <button type="submit" class="btn btn-success" id="create-task">
-              Створити
+              Create
             </button>
             <button type="button" class="btn btn-danger" id="close-modal">
-              Прибрати
+              Close
             </button>
           </div>
         </form>
       </div>
       <div class="cards-container">
         <div class="cards-container__planed">
-          <h1>Заплановано</h1>
+          <h1>To do</h1>
           <div class="cards-container__planed--items"></div>
         </div>
         <div class="cards-container__ready">
-          <h1>Виконано</h1>
+          <h1>Done</h1>
           <div class="cards-container__ready--items"></div>
         </div>
       </div>
@@ -115,8 +117,8 @@
             alt="Hello"
             style="height: 50px; width: 50px"
           />
-          <strong class="me-auto">Дій!</strong>
-          <small>Зараз</small>
+          <strong class="me-auto">Do!</strong>
+          <small>now</small>
           <button
             type="button"
             class="btn-close"

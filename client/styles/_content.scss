@@ -9,7 +9,7 @@
     flex-direction: column;
     height: 200px;
     align-items: center;
-    width: 100%;
+    max-width: 100%;
     & button {
       width: 30%;
       font-family: $main-font;
@@ -46,6 +46,21 @@
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
+    @include breakpoint (md-only){
+      width: 90%;
+    }
+    @include breakpoint (sm-only){
+      width: 100%;
+    }
+    @include breakpoint (md){
+      width: 90%;
+    }
+    @include breakpoint (xl){
+      width: 50%;
+    }
+    @include breakpoint (lg){
+      width: 50%;
+    }
   }
 }
 
@@ -75,38 +90,156 @@
   justify-content: center;
   margin: 0 auto;
   width: 100%;
+  @include breakpoint (md-only){
+    flex-direction: column;
+    align-items: center;
+  }
+  @include breakpoint (sm){
+    flex-direction: column;
+    align-items: center;
+  }
+  @include breakpoint (md){
+    flex-direction: row;
+    align-items: start;
+  }
+  @include breakpoint (xl){
+    flex-direction: row;
+    align-items: start;
+  }
+  @include breakpoint (lg){
+    flex-direction: row;
+    align-items: start;
+  }
 }
-.cards-container__planed, .cards-container__ready {
-  width: 35%;
+
+.cards-container__planed{
+  @include breakpoint (md-only){
+    width: 80%;
+  }
+  @include breakpoint (sm){
+    width: 80%;
+  }
+  @include breakpoint (md){
+    width: 80%;
+  }
+  @include breakpoint (xl){
+    width: 50%;
+  }
+  @include breakpoint (lg){
+    width: 50%;
+  }
+}
+.cards-container__ready , .cards-container__planed{
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  @include breakpoint (md-only){
+    width: 80%;
+  }
+  @include breakpoint (sm){
+    width: 80%;
+  }
+  @include breakpoint (md){
+    width: 80%;
+  }
+  @include breakpoint (xl){
+    width: 50%;
+  }
+  @include breakpoint (lg){
+    width: 50%;
+  }
+  &--items{
+    @include breakpoint (md-only){
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @include breakpoint (sm){
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @include breakpoint (md){
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @include breakpoint (xl){
+      display: flex;
+      flex-direction: column;
+    }
+    @include breakpoint (lg){
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 .card {
-  margin: 0 10px 20px 0;
-  width: 15%;
+  margin: 0 5px 20px 0;
   text-align: center;
+  background-color: $background-color;
+  @include breakpoint (md-only){
+    width: 9rem;
+  }
+  @include breakpoint (sm){
+    width: 9rem;
+  }
+  @include breakpoint (md){
+    width: 9rem;
+  }
+  @include breakpoint (xl){
+    width: 18rem;
+  }
+  @include breakpoint (lg){
+    width: 18rem;
+  }
 }
 body {
   background-color: beige;
   height: 100%;
   font-family: $main-font;
 }
-.card {
-  background-color: $background-color;
-}
 
 .start-page {
   display: flex;
   margin: 0 auto;
+  border: 2px solid $title-color;
+  border-radius: 30px;
+  background-color: $background-color;
   width: 40%;
-  flex-direction: column;
+  box-shadow: 10px 10px 10px $text-color;
   justify-content: space-evenly;
   align-items: center;
-  height: 300px;
+  height: 400px;
   margin-top: 100px;
+  @include breakpoint (md-only){
+    width: 60%;
+  }
+  @include breakpoint (sm-only){
+    width: 90%;
+  }
+  @include breakpoint (md){
+    width: 60%;
+  }
+  @include breakpoint(xl){
+    width: 60%;
+  }
+
+  & button{
+    border: 1px solid $title-color;
+    height: 90%;
+    width: 45%;
+    border-radius: 30px;
+    box-shadow: 0 0 40px 40px $background-color inset, 0 0 0 0 $background-color;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+    font-size: $title-font-size;
+    font-style: $title-font-style;
+    &:hover{
+      box-shadow: 0 0 10px 0 $text-color inset, 0 0 10px 4px $text-color
+    }
+    
+  }
 }
 .login-form__container {
   margin: 0 auto;
@@ -123,11 +256,31 @@ body {
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s;
+  @include breakpoint (md-only){
+    width: 90%;
+    height: 400px;
+  }
+  @include breakpoint (sm){
+    width: 90%;
+    height: 400px;
+  }
+  @include breakpoint (md){
+    width: 90%;
+    height: 400px;
+  }
+  @include breakpoint(xl){
+    width: 90%;
+    height: 400px;
+  }
+  @include breakpoint(lg){
+    width: 60%;
+    height: 400px;
+  }
   &--item {
     width: 90%;
     height: 90%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
     margin: 0 auto;
@@ -144,12 +297,39 @@ body {
       justify-content: space-evenly;
       align-items: center;
       width: 60%;
+      @include breakpoint (md-only){
+        width: 90%;
+
+      }
+      @include breakpoint (sm){
+        width: 90%;
+
+      }
+      @include breakpoint (md){
+        width: 90%;
+
+      }
       & :first-child {
         box-shadow: 3px 3px 3px rgb(10, 53, 4);
       }
       & :last-child {
         box-shadow: 3px 3px 3px rgb(53, 4, 4);
       }
+      & button{
+        @include breakpoint (md-only){
+          width: 40%;
+  
+        }
+        @include breakpoint (sm){
+          width: 40%;
+  
+        }
+        @include breakpoint (md){
+          width: 40%;
+        }
+      }
+      
+
     }
   }
 }
@@ -166,10 +346,23 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 110px;
+  width: 20%;
   display: none;
   text-align: center;
   color: $text-color;
+  background-color: $background-color;
+  padding: 0;
+  @include breakpoint (md-only){
+    width: 30px;
+
+  }
+  @include breakpoint (sm){
+    width: 30px;
+
+  }
+  @include breakpoint (md){
+    width: 30px;
+  }
 }
 
 .active {
@@ -187,11 +380,9 @@ body {
 }
 
 .form-switch{
-
+  margin: 0 auto;
   margin-bottom: 10px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  padding: 0 0 15px 0 ;
 }
